@@ -110,12 +110,7 @@
 							"value": "5000",
 							"type": "text"
 						}
-					],
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					]
 				},
 				"url": {
 					"raw": "{{url}}user_info_3",
@@ -285,6 +280,130 @@
 						{
 							"key": "salary",
 							"value": "5000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "h5",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var j_resp = pm.response.json ();\r",
+							"var j_req = request.data;\r",
+							"\r",
+							"pm.test(\"Your test start qa\", function () {\r",
+							"    pm.expect(j_resp).to.have.property(\"start_qa_salary\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Your test after6\", function () {\r",
+							"    pm.expect(j_resp).to.have.property(\"qa_salary_after_6_months\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Your test after12\", function () {\r",
+							"    pm.expect(j_resp).to.have.property(\"qa_salary_after_12_months\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Your test after1_5\", function () {\r",
+							"    pm.expect(j_resp).to.have.property(\"qa_salary_after_1.5_year\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Your test after3_5\", function () {\r",
+							"    pm.expect(j_resp).to.have.property(\"qa_salary_after_3.5_years\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Your test person\", function () {\r",
+							"    pm.expect(j_resp).to.have.property(\"person\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Your test start rq\", function () {\r",
+							"    pm.expect(j_resp.start_qa_salary).to.eql(+j_req.salary)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Your test after6_rq\", function () {\r",
+							"    pm.expect(j_resp.qa_salary_after_6_months).to.eql(+j_req.salary*2)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Your test after12_rq\", function () {\r",
+							"    pm.expect(j_resp.qa_salary_after_12_months).to.eql(+j_req.salary*2.7)\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Your test after1_5_rq\", function () {\r",
+							"    pm.expect(j_resp[\"qa_salary_after_1.5_year\"]).to.eql(+j_req.salary*3.3)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Your test after3_5_rq\", function () {\r",
+							"    pm.expect(j_resp[\"qa_salary_after_3.5_years\"]).to.eql(+j_req.salary*3.8)\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Your test u_name_rq\", function () {\r",
+							"    pm.expect(j_resp[\"person\"][\"u_name\"][1]).to.eql(+j_req.salary)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Your test u_age\", function () {\r",
+							"    pm.expect(j_resp[\"person\"][\"u_age\"]).to.eql(+j_req.age)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Your test u_salary5\", function () {\r",
+							"    pm.expect(j_resp[\"person\"][\"u_salary_5_years\"]).to.eql(+j_req.salary*4.2)\r",
+							"});\r",
+							"\r",
+							"console.log(j_resp.person);\r",
+							"for (var prop in j_resp.person) {\r",
+							"    console.log(\"person.\" + prop + \" = \" + j_resp.person[prop]);\r",
+							"}\r",
+							"\r",
+							"for (let key in j_resp.person) {\r",
+							"  console.log(j_resp.person[key]);\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{name}}",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "{{age}}",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "{{salary}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}user_info_2",
+					"host": [
+						"{{url}}user_info_2"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
 						}
 					]
 				}
